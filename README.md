@@ -152,6 +152,20 @@ Run new image as a container
 ```shell
 ./create_container.sh
 ```
+The 
+
+If you're not in azure server, start your container (`docker start -i duckietownrl`) then enter the following commands.
+**In the first line, replace "paperino" by "gastone" if you use this robot, but you can still change it later.**
+```shell
+export ROBOT_NAME="paperino" && \
+apt update -y && apt install -y dbus avahi-daemon iputils-ping && \
+echo "service dbus start" >> /root/.bashrc && \
+echo "service avahi-daemon start" >> /root/.bashrc && \
+echo "export ROS_MASTER_URI=http://\$ROBOT_NAME.local:11311/" >> /root/.bashrc && \
+echo "export ROS_IP=\$(hostname -I | awk '{print \$1}')" >> /root/.bashrc && \
+echo "export ROS_HOSTNAME=\$ROS_IP" >> /root/.bashrc && \
+. ~/.bashrc
+```
 
 Then you can:
  - View the status of your container using `docker ps -a`

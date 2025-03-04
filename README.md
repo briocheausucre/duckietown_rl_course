@@ -150,9 +150,10 @@ docker build -t indepthrl .
 
 Run new image as a container
 ```shell
-./create_container.sh
+bash launch_container.sh
 ```
-The 
+The current repository (duckietown_rl_course) has been mounted in the container.
+Every modification here will also modify it in the container at /root/duckietown_rl_course
 
 If you're not in azure server, start your container (`docker start -i duckietownrl`) then enter the following commands.
 **In the first line, replace "paperino" by "gastone" if you use this robot, but you can still change it later.**
@@ -170,7 +171,8 @@ echo "export ROS_HOSTNAME=\$ROS_IP" >> /root/.bashrc && \
 Then you can:
  - View the status of your container using `docker ps -a`
  - Start the container using `docker start -i indepthrl_container` Only if the container is not already "Up".
- - Start the container using `docker exec -it indepthrl_container /bin/bash` Only if the container is already "Up".
+ - Go back inside the container using `docker exec -it indepthrl_container /bin/bash` Only if the container is already "Up".
+**But `bash launch_container.sh` already do this, it will check the container status and start it or execute it as needed.**
 
 Now, test that:
  - The simulator work with `python3 duckiesim/manual/manual_control.py`

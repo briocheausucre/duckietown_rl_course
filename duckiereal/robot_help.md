@@ -43,5 +43,8 @@ If it doesn't, try to show the velocity values send to the robot by the api:
 webpage, type paperino.local in your web browser).
 
 If there is no messages, ssh the robot, exec the container "duckiebot_interface" and type "ps aux | grep api".
-If it shows more than one program, call me, if there is only one grep command, type "python3 /api.py"
+If it shows more than one program, call me, if there is only one grep command, type "python3 /api.py" in a terminal and 
+let it run while you do your stuff in another one.
 
+If everything is fine but you still have the issue, do the steps in the previous section, if it still doesn't work, call 
+me.

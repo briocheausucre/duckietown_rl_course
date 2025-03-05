@@ -30,7 +30,7 @@ else
       -e XAUTHORITY=$XAUTH \
       -v $XAUTH:$XAUTH \
       -v /tmp/.X11-unix:/tmp/.X11-unix \
-      -v $CURRENT_DIR:/home/duckietown_rl_course/$(basename "$CURRENT_DIR") \
+      -v $CURRENT_DIR:/home/duckietown_rl_course/\
       --device /dev/input:/dev/input \
       --privileged \
       --network=host \

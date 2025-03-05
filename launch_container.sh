@@ -35,5 +35,5 @@ else
       --privileged \
       --network=host \
       --ipc=host \
-      duckie-course bash
+      indepthrl bash
 fi

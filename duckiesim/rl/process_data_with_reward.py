@@ -1,7 +1,7 @@
 from stable_baselines3.common.buffers import ReplayBuffer
-from duckietown_rl_course.duckiesim.rl.custom_reward_function import compute_custom_reward
-from duckietown_rl_course.duckietownrl.gym_duckietown import envs
-from duckietown_rl_course.duckietownrl.gym_duckietown.simulator import REWARD_INVALID_POSE
+from duckiesim.rl.custom_reward_function import compute_custom_reward
+from duckietownrl.gym_duckietown import envs
+from duckietownrl.gym_duckietown.simulator import REWARD_INVALID_POSE
 import pandas as pd
 from tqdm import tqdm
 import os

@@ -94,6 +94,7 @@ RUN apt-get update && apt-get install -y x11-apps && rm -rf /var/lib/apt/lists/*
 RUN /opt/conda/bin/conda run -n duckietownrl pip uninstall -y pyglet
 RUN /opt/conda/bin/conda run -n duckietownrl pip install pyglet==1.5.11
 RUN /opt/conda/bin/conda run -n duckietownrl pip install pygame
+RUN apt-get update && apt-get install xvfb -y
 
 
 

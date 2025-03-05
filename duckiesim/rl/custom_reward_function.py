@@ -158,6 +158,26 @@ def process_image(image):
         action_according_blue,
     )
 
+def compute_position_reward(x_blue_center, y_blue_center):
+
+    if x_blue_center is None or y_blue_center is None :
+
+        return -10.0
+    
+    reward_blue = 1 - abs(x_blue_center)
+
+    return reward_blue
+
+def  compute_speed_reward(a,action_according_blue, x_blue_center):
+
+    if (action_according_blue == "Go Right" and a[1] > 0) or (action_according_blue == "Go Left" and a[1] < 0) :
+        reward_speed = -10
+
+    else : 
+        reward_speed = (1 - abs(x_blue_center)) * a[0] + abs(x_blue_center) * a[1]
+
+    return -(reward_speed)
+
 def compute_custom_reward(obs, a): 
         """ action : (vel_abs, vel_angle) """
         
@@ -168,5 +188,12 @@ def compute_custom_reward(obs, a):
             action_fased_on_white,
             action_based_on_blue,
         ) = process_image(obs)
-        reward = 0.0 #TODO
+
+        if x_blue_center == None or y_blue_center == None :
+            return -10.
+
+        position_reward = compute_position_reward(x_blue_center, y_blue_center)
+        speed_reward = compute_speed_reward(a,action_based_on_blue, x_blue_center)
+
+        reward = position_reward + speed_reward #TODO
         return reward

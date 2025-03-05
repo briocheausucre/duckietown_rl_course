@@ -12,7 +12,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 import tyro
 import pandas as pd
-from duckietown_rl_course.duckiesim.rl.process_data_with_reward import process_dataset
+from duckiesim.rl.process_data_with_reward import process_dataset
 # from stable_baselines3.common.atari_wrappers import (
 #     ClipRewardEnv,
 #     EpisodicLifeEnv,
@@ -21,8 +21,8 @@ from duckietown_rl_course.duckiesim.rl.process_data_with_reward import process_d
 #     NoopResetEnv,
 # )
 from stable_baselines3.common.buffers import ReplayBuffer
-from duckietown_rl_course.duckietownrl.gym_duckietown import envs
-from duckietown_rl_course.duckiesim.rl.rl_utils import evaluate
+from duckietownrl.gym_duckietown import envs
+from duckiesim.rl.rl_utils import evaluate
 import wandb
 import plotext
 
@@ -37,7 +37,7 @@ class Args:
     """if toggled, `torch.backends.cudnn.deterministic=False`"""
     cuda: bool = True
     """if toggled, cuda will be enabled by default"""
-    track: bool = True
+    track: bool = False
     """if toggled, this experiment will be tracked with Weights and Biases"""
     wandb_project_name: str = "DuckieTownRL"
     """the wandb's project name"""
@@ -65,7 +65,7 @@ class Args:
     """the replay memory buffer size"""
     gamma: float = 0.99
     """the discount factor gamma"""
-    tau: float = 1.0
+    tau: float = 0.3
     """the target network update rate"""
     target_network_frequency: int = 4
     """the timesteps it takes to update the target network"""
@@ -85,7 +85,7 @@ class Args:
     # Munchausen specific arguments
     tau_soft: float = 0.03 #0.03
     """the temperature parameter for the soft-max policy as well as entropy regularization : tau = lambda_kl + lambda_entropy"""
-    alpha: float = 0.9 # 0.9
+    alpha: float = 1./3 # 0.9
     """the ppo term weight : alpha = lambda_kl / (lambda_kl + lambda_entropy)"""
     l_0: float = -1.0
     """the lower bound of the weighted log probability"""
